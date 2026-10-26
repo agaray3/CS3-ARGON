@@ -1,10 +1,3 @@
-"""Realization / Implementation (Implements): classes fulfil a Notifier interface.
-
-Python has no 'interface' keyword, so the abc module is used. Every
-concrete class MUST implement the abstract method(s), and the interface
-itself cannot be instantiated.
-"""
-
 from abc import ABC, abstractmethod
 
 
@@ -24,13 +17,11 @@ class SMSNotifier(Notifier):
         print(f"[SMS to {recipient}] {message}")
 
 
-# An incomplete class: it forgets to implement send()
 class BrokenNotifier(Notifier):
     pass
 
 
 if __name__ == "__main__":
-    # Both realizations can be used through the same interface type
     channels = [
         (EmailNotifier(), "juan@example.com"),
         (SMSNotifier(), "+63 917 123 4567"),
@@ -38,7 +29,6 @@ if __name__ == "__main__":
     for channel, recipient in channels:
         channel.send(recipient, "Your order has shipped!")
 
-    # Interface and incomplete implementations cannot be instantiated
     for cls in (Notifier, BrokenNotifier):
         try:
             cls()
