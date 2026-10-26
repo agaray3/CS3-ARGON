@@ -1,24 +1,16 @@
-"""Association (Knows-a): Student <-> Course (many-to-many).
-
-Both objects are independent and keep references to each other, but
-neither owns the other. Deleting one does not destroy the other.
-"""
-
-
 class Course:
     def __init__(self, code: str, title: str):
         self.code = code
         self.title = title
-        self.students = []  # Course knows its Students
+        self.students = []
 
 
 class Student:
     def __init__(self, name: str):
         self.name = name
-        self.courses = []  # Student knows its Courses
+        self.courses = []
 
     def enroll(self, course: Course):
-        # Establish the link in BOTH directions
         self.courses.append(course)
         course.students.append(self)
 
